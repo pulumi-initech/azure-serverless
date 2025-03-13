@@ -1,0 +1,9 @@
+config:
+  azure-native:location: WestUS
+  azure-serverless:appPath: ./app
+  azure-serverless:errorDocument: error.html
+  azure-serverless:indexDocument: index.html
+  azure-serverless:sitePath: ./www
+  pulumi:template: serverless-azure-typescript
+environment:
+  - shared/azure-dev
