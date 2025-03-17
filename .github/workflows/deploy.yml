@@ -17,7 +17,7 @@ jobs:
       - name: In order to use the Pulumi v2 action, we need to setup the Pulumi project specific language environment
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Authenticate with Pulumi Cloud
         uses: pulumi/auth-actions@v1
@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "ARM_OIDC_TOKEN=$ARM_OIDC_TOKEN"
       - name: Install dependencies
-        run: npm install    
+        run: npm ci    
       - uses: pulumi/actions@v6
         with:
           command: preview
