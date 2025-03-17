@@ -1,6 +1,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as azure from "@pulumi/azure-native";
-import * as synced from "@pulumi/synced-folder";
+//import * as synced from "@pulumi/synced-folder";
 
 // Import the program's configuration settings.
 const config = new pulumi.Config();
@@ -29,13 +29,13 @@ const website = new azure.storage.StorageAccountStaticWebsite("website", {
     error404Document: errorDocument,
 });
 
-// Use a synced folder to manage the files of the website.
-const syncedFolder = new synced.AzureBlobFolder("synced-folder", {
-    path: sitePath,
-    resourceGroupName: resourceGroup.name,
-    storageAccountName: account.name,
-    containerName: website.containerName,
-});
+// // Use a synced folder to manage the files of the website.
+// const syncedFolder = new synced.AzureBlobFolder("synced-folder", {
+//     path: sitePath,
+//     resourceGroupName: resourceGroup.name,
+//     storageAccountName: account.name,
+//     containerName: website.containerName,
+// });
 
 // Create a storage container for the serverless app.
 const appContainer = new azure.storage.BlobContainer("app-container", {
