@@ -5,5 +5,3 @@ config:
   azure-serverless:indexDocument: index.html
   azure-serverless:sitePath: ./www
   pulumi:template: serverless-azure-typescript
-environment:
-  - shared/azure-dev
