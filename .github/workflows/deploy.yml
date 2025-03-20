@@ -29,7 +29,7 @@ jobs:
       - name: Install and inject ESC environment variables
         uses: pulumi/esc-action@v1
         with:
-          environment: 'initech/shared/aws-dev'
+          environment: 'initech/shared/azure-dev'
 
       - name: Verify environment variables
         run: |
@@ -40,5 +40,5 @@ jobs:
 
       - uses: pulumi/actions@v6
         with:
-          command: preview
+          command: update
           stack-name: initech/azure-serverless/dev
