@@ -14,27 +14,31 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set-up Node 18
         uses: actions/setup-node@v2
         with:
           node-version: '18'
+
       - name: Authenticate with Pulumi Cloud
         uses: pulumi/auth-actions@v1
         with:
           organization: initech
           requested-token-type: urn:pulumi:token-type:access_token:organization
+
       - name: Install and inject ESC environment variables
         uses: pulumi/esc-action@v1
         with:
-          environment: 'initech/shared/azure-dev'
+          environment: 'initech/shared/aws-dev'
+
       - name: Verify environment variables
         run: |
           echo "ARM_OIDC_TOKEN=$ARM_OIDC_TOKEN"
-      - name: Install dependencies
-        run: npm ci    
-      - uses: pulumi/actions@v6
-        with:
-          command: preview
-          stack-name: initech/azure-serverless/dev
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # - uses: pulumi/actions@v6
+      #   with:
+      #     command: update
+      #     stack-name: initech/azure-serverless/dev
