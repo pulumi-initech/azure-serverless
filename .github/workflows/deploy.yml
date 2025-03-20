@@ -35,10 +35,10 @@ jobs:
         run: |
           echo "ARM_OIDC_TOKEN=$ARM_OIDC_TOKEN"
 
-      # - name: Install dependencies
-      #   run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      # - uses: pulumi/actions@v6
-      #   with:
-      #     command: update
-      #     stack-name: initech/azure-serverless/dev
+      - uses: pulumi/actions@v6
+        with:
+          command: update
+          stack-name: initech/azure-serverless/dev
