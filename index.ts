@@ -52,6 +52,13 @@ const appBlob = new azure.storage.Blob("app-blob", {
     source: new pulumi.asset.FileArchive(appPath),
 });
 
+const appBlob2 = new azure.storage.Blob("app-blob2", {
+    accountName: account.name,
+    resourceGroupName: resourceGroup.name,
+    containerName: appContainer.name,
+    source: new pulumi.asset.FileArchive(appPath),
+});
+
 // Create a shared access signature to give the Function App access to the code.
 const signature = azure.storage.listStorageAccountServiceSASOutput({
     resourceGroupName: resourceGroup.name,
@@ -111,15 +118,15 @@ const functionApp = new azure.web.WebApp("function-app", {
 });
 
 // Create a JSON configuration file for the website.
-// const configFile = new azure.storage.Blob("config.json", {
-//     source: functionApp.defaultHostName
-//         .apply(host => new pulumi.asset.StringAsset(JSON.stringify({ api: `https://${host}/api` }))),
-//     contentType: "application/json",
-//     accountName: account.name,
-//     resourceGroupName: resourceGroup.name,
-//     containerName: website.containerName,
-// });
+const configFile = new azure.storage.Blob("config.json", {
+    source: functionApp.defaultHostName
+        .apply(host => new pulumi.asset.StringAsset(JSON.stringify({ api: `https://${host}/api` }))),
+    contentType: "application/json",
+    accountName: account.name,
+    resourceGroupName: resourceGroup.name,
+    containerName: website.containerName,
+});
 
 // Export the URLs of the website and serverless endpoint.
-// export const siteURL = account.primaryEndpoints.apply(primaryEndpoints => primaryEndpoints.web);
-// export const apiURL = pulumi.interpolate`https://${functionApp.defaultHostName}/api`;
+export const siteURL = account.primaryEndpoints.apply(primaryEndpoints => primaryEndpoints.web);
+export const apiURL = pulumi.interpolate`https://${functionApp.defaultHostName}/api`;
