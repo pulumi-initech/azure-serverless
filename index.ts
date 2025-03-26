@@ -52,6 +52,7 @@ const appBlob = new azure.storage.Blob("app-blob", {
     source: new pulumi.asset.FileArchive(appPath),
 });
 
+// We need this
 const appBlob2 = new azure.storage.Blob("app-blob2", {
     accountName: account.name,
     resourceGroupName: resourceGroup.name,
