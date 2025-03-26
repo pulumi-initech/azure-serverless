@@ -121,5 +121,5 @@ const functionApp = new azure.web.WebApp("function-app", {
 // });
 
 // Export the URLs of the website and serverless endpoint.
-export const siteURL = account.primaryEndpoints.apply(primaryEndpoints => primaryEndpoints.web);
-export const apiURL = pulumi.interpolate`https://${functionApp.defaultHostName}/api`;
+// export const siteURL = account.primaryEndpoints.apply(primaryEndpoints => primaryEndpoints.web);
+// export const apiURL = pulumi.interpolate`https://${functionApp.defaultHostName}/api`;
