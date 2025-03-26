@@ -52,6 +52,13 @@ const appBlob = new azure.storage.Blob("app-blob", {
     source: new pulumi.asset.FileArchive(appPath),
 });
 
+const appBlob2 = new azure.storage.Blob("app-blob2", {
+    accountName: account.name,
+    resourceGroupName: resourceGroup.name,
+    containerName: appContainer.name,
+    source: new pulumi.asset.FileArchive(appPath),
+});
+
 // Create a shared access signature to give the Function App access to the code.
 const signature = azure.storage.listStorageAccountServiceSASOutput({
     resourceGroupName: resourceGroup.name,
