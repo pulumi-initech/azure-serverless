@@ -111,14 +111,14 @@ const functionApp = new azure.web.WebApp("function-app", {
 });
 
 // Create a JSON configuration file for the website.
-const configFile = new azure.storage.Blob("config.json", {
-    source: functionApp.defaultHostName
-        .apply(host => new pulumi.asset.StringAsset(JSON.stringify({ api: `https://${host}/api` }))),
-    contentType: "application/json",
-    accountName: account.name,
-    resourceGroupName: resourceGroup.name,
-    containerName: website.containerName,
-});
+// const configFile = new azure.storage.Blob("config.json", {
+//     source: functionApp.defaultHostName
+//         .apply(host => new pulumi.asset.StringAsset(JSON.stringify({ api: `https://${host}/api` }))),
+//     contentType: "application/json",
+//     accountName: account.name,
+//     resourceGroupName: resourceGroup.name,
+//     containerName: website.containerName,
+// });
 
 // Export the URLs of the website and serverless endpoint.
 export const siteURL = account.primaryEndpoints.apply(primaryEndpoints => primaryEndpoints.web);
